@@ -9,12 +9,15 @@ module.exports.login = function(req, res) {
     })
 };
 
-module.exports.register = function(req, res) {
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    })
+module.exports.register = async function(req, res) {
+    const candidate = await User.findOne({email: req.body.email})
 
-    user.save().then(() => console.log('User created'))
-}
+    if(candidate) {
+        // Пользователь существует, отдаем ошибку
+        res.status(409).json({
+            message: 'This email is already occupied. Please log in.'
+        })
+    } else {
+        // Создаем пользователя
+    }
+};
