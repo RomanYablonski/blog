@@ -2,9 +2,10 @@ const express = require('express');
 const controller = require('../controllers/article');
 const router = express.Router();
 
-router.get('/:id', controller.getById);
-router.delete('/:id', controller.remove);
+router.get('/:categoryId', controller.getByCategoryId);
+router.get('/:articleId', controller.getArticleById);
+router.delete('/:articleId', controller.delete);
 router.post('/register', controller.create);
-router.patch('/:id', controller.update);
+router.patch('/:articleId', controller.update);
 
 module.exports = router;

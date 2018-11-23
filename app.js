@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const bodyParser = require('body-parser'); // for parsing server requests
 const cors = require('cors'); // чтобы сервер мог обрабатывать cors запросы
 const morgan = require('morgan'); // чтобы мы могли логировать запросы
@@ -15,6 +16,8 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected'))
     .catch(error => console.log(error));
 
+app.use(passport.initialize()); // для защиты роутов
+require('./middleware/passport')(passport);
 app.use(morgan('dev')); // чтобы мы могли логировать запросы (в консоли например)
 app.use(cors());  // чтобы сервер мог обрабатывать cors запросы
 app.use(bodyParser.urlencoded({extended: true})); // for parsing server requests

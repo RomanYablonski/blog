@@ -6,10 +6,6 @@ const articleSchema = new Schema({
         type: String,
         required: true
     },
-    id: {
-        type: Number,
-        required: true
-    },
     title: {
         type: String
     },
@@ -27,17 +23,18 @@ const articleSchema = new Schema({
         type: String,
         default: ''
     },
-    categories: {
-        type: Array,
-        required: true
+    category: { // todo: make as array of categories
+        ref: 'categories',
+        type: Schema.Types.ObjectId
     },
     relatedArticles: [{
         id: {
             type: Number
         }
     }],
-    viewsCounter: {
-        type: Number
+    user: {
+        ref: 'users',
+        type: Schema.Types.ObjectId
     }
 });
 
