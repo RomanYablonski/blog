@@ -12,5 +12,6 @@
     <orderEntry type="library" name="@types/express-serve-static-core" level="application" />
     <orderEntry type="library" name="@types/serve-static" level="application" />
     <orderEntry type="library" name="@types/passport" level="application" />
+    <orderEntry type="library" name="@types/mongoose" level="application" />
   </component>
 </module>

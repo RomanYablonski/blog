@@ -4,18 +4,9 @@ const Schema = mongoose.Schema;
 const categorySchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
-    },
-    id: {
-        type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     title: {
-        type: String
-    },
-    description: {
         type: String
     },
     text: {
@@ -25,13 +16,10 @@ const categorySchema = new Schema({
         type: String,
         default: ''
     },
-    parentCategory: {
-        ref: 'categories',
+    user: {
+        ref: 'users',
         type: Schema.Types.ObjectId,
-        required: true // если нет родительской, то 0
-    },
-    childCategories: {
-        type: Array
+        unique: false
     }
 });
 

@@ -44,7 +44,7 @@ module.exports.create = async function (req, res) {
             description: req.body.description,
             text: req.body.text,
             date: req.body.date,
-            imageSrc: req.body.imageSrc,
+            imageSrc: req.file ? req.file.path : '',
             category: req.body.category,
             relatedArticles: req.body.relatedArticles,
             user: req.user.id
@@ -56,6 +56,12 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.update = async function (req, res) {
+    const updated = {
+        name: req.body.name
+    };
+    if (req.file) {
+        updated.imageSrc = req.file.path
+    }
     try {
         const article = await Article.findOneAndUpdate(
             {_id: req.params.id},
